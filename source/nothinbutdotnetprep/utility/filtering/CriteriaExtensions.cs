@@ -11,5 +11,10 @@
         {
             return new OrMatch<Item>(left, right);
         }
+
+        public static IMatchA<Item> and<Item>(this IMatchA<Item> left, IMatchA<Item> right)
+        {
+            return new AndMatch<Item>(left, right);
+        }
     }
 }

@@ -3,7 +3,14 @@ using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.utility.filtering
 {
-    public class MatchFactory<ItemToFilter, PropertyType> 
+    public interface IMatchFactory<ItemToFilter, PropertyType>
+    {
+        IMatchA<ItemToFilter> equal_to(PropertyType value);
+        IMatchA<ItemToFilter> equal_to_any(params PropertyType[] values);
+        IMatchA<ItemToFilter> not_equal_to(PropertyType value);
+    }
+
+    public class MatchFactory<ItemToFilter, PropertyType> : IMatchFactory<ItemToFilter, PropertyType>
     {
         Func<ItemToFilter, PropertyType> accessor;
 
