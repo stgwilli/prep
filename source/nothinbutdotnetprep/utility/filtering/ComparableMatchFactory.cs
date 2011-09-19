@@ -15,14 +15,13 @@ namespace nothinbutdotnetprep.utility.filtering
 
         public IMatchA<ItemToFilter> greater_than(PropertyType value)
         {
-            return new AnonymousMatch<ItemToFilter>(x => accessor(x).CompareTo(value) > 0);
+            return anonymous_match(x => accessor(x).CompareTo(value) > 0);
         }
 
         public IMatchA<ItemToFilter> less_than(PropertyType value)
         {
             return new NegatingMatch<ItemToFilter>(greater_than(value).or(equal_to(value)));
         }
-
 
         public IMatchA<ItemToFilter> between(PropertyType start,PropertyType end)
         {
@@ -42,6 +41,11 @@ namespace nothinbutdotnetprep.utility.filtering
         public IMatchA<ItemToFilter> not_equal_to(PropertyType value)
         {
             return original.not_equal_to(value);
+        }
+
+        public IMatchA<ItemToFilter> anonymous_match(Condition<ItemToFilter> criteria)
+        {
+            return original.anonymous_match(criteria);
         }
     }
 }

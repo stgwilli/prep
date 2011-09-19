@@ -1,3 +1,5 @@
+using System;
+
 namespace nothinbutdotnetprep.utility.filtering
 {
     public interface ICreateMatchers<ItemToFilter, PropertyType>
@@ -5,5 +7,6 @@ namespace nothinbutdotnetprep.utility.filtering
         IMatchA<ItemToFilter> equal_to(PropertyType value);
         IMatchA<ItemToFilter> equal_to_any(params PropertyType[] values);
         IMatchA<ItemToFilter> not_equal_to(PropertyType value);
+        IMatchA<ItemToFilter> anonymous_match(Condition<ItemToFilter> criteria); 
     }
 }
